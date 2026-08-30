@@ -1,0 +1,5 @@
+Start the container in background:docker compose up -d
+Rebuild the container (after modifying HTML/CSS/JS files):docker compose up -d --build
+Stop the container:docker compose down
+Check running containers:docker ps
+

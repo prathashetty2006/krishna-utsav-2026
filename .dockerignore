@@ -1,0 +1,5 @@
+.git
+.agents
+.vscode
+.idea
+*.log
