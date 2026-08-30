@@ -3,3 +3,9 @@ Rebuild the container (after modifying HTML/CSS/JS files):docker compose up -d -
 Stop the container:docker compose down
 Check running containers:docker ps
 
+GitHub:
+git add .
+git commit -m "Description of changes made"
+git push
+
+
