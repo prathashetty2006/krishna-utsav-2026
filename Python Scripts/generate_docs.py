@@ -437,7 +437,7 @@ def create_documentation():
         "The repository is structured according to strict separation-of-concerns guidelines to ensure high maintainability:"
     )
 
-    dir_table = doc.add_table(rows=8, cols=3)
+    dir_table = doc.add_table(rows=9, cols=3)
     dir_table.alignment = WD_TABLE_ALIGNMENT.CENTER
     set_table_borders(dir_table, "CCCCCC")
     
@@ -453,11 +453,12 @@ def create_documentation():
         r.font.color.rgb = RGBColor(255, 255, 255)
 
     dir_data = [
+        ("index.html, vercel.json", "Root entry files", "Zero-config root entry point for Vercel, Netlify, and Cloud CDNs to prevent 404s"),
         ("HTML and CSS/", "index.html, index.css", "Semantic structure, layout templates, glassmorphism design tokens"),
         ("Java Script/", "index.js", "Client interaction, carousels, audio gesture handlers, screensaver logic"),
         ("Data and Config/", "nginx.conf", "Custom Nginx web server configuration, Gzip types & redirect rules"),
         ("Image and Audio/", "Flute audio, photos", "Devotional background audio (mp3), peacock feather textures & images"),
-        ("Python Scripts/", "generate_docs.py", "Automated Word document documentation generator scripts"),
+        ("Python Scripts/", "generate_docs.py, create_root_entry.py", "Automated Word documentation and root HTML synchronization scripts"),
         ("Docs and Notes/", ".docx documentation", "Formal project documentation files created for college submission"),
         ("Root Configs", "Dockerfile, compose, AGENTS.md", "Docker build container, Compose service & Workspace doc sync rules")
     ]
@@ -647,6 +648,24 @@ def create_documentation():
 
     doc.add_paragraph("To launch using Docker Compose:")
     add_code_block("# Start service in detached mode\ndocker-compose up -d\n\n# Stop and remove container\ndocker-compose down")
+
+    add_heading_2("6.3 Cloud Edge Deployment & Vercel Static Hosting Architecture")
+    doc.add_paragraph(
+        "For global edge delivery without Docker infrastructure, the repository is configured for instantaneous deployment "
+        "on Vercel, Netlify, and GitHub Pages. Modern cloud static hosts look for `index.html` at the repository root by default."
+    )
+    doc.add_paragraph(
+        "To prevent 404 routing errors upon initial deployment, the project provides a synchronized root `index.html` with calibrated "
+        "relative asset bindings (`HTML and CSS/index.css`, `Java Script/index.js`, `Image and Audio/`), paired with a root `vercel.json` "
+        "configuration file enabling clean URLs and resilient path routing."
+    )
+    add_code_block(
+        "// vercel.json - Edge static hosting configuration\n"
+        "{\n"
+        "  \"cleanUrls\": true,\n"
+        "  \"trailingSlash\": false\n"
+        "}"
+    )
 
     doc.add_page_break()
 
