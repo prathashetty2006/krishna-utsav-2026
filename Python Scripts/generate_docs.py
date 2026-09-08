@@ -493,17 +493,20 @@ def create_documentation():
     for h in h_features:
         doc.add_paragraph(h, style='List Bullet')
 
-    add_heading_2("4.2 Interactive Competition Showcase (8 Event Categories)")
+    add_heading_2("4.2 Interactive Competition Showcase (5 Featured Festival Events)")
     doc.add_paragraph(
-        "To present all 8 student competition categories without cluttering the page, an interactive, multi-card responsive slider track was engineered."
+        "The portal highlights 5 official cultural competitions along with designated faculty coordinators, venues, and timings "
+        "on an interactive, multi-card responsive slider track:"
     )
     
-    comp_table = doc.add_table(rows=9, cols=3)
+    comp_table = doc.add_table(rows=6, cols=5)
     comp_table.alignment = WD_TABLE_ALIGNMENT.CENTER
     set_table_borders(comp_table, "CCCCCC")
     
     c_hdr = comp_table.rows[0].cells
-    for idx, hname in enumerate(["Competition Category", "Schedule & Venue", "Description"]):
+    widths = [Inches(1.4), Inches(1.1), Inches(1.1), Inches(1.3), Inches(1.6)]
+    for idx, hname in enumerate(["Competition Event", "Date & Time", "Event Venue", "Faculty Coordinator", "Description"]):
+        c_hdr[idx].width = widths[idx]
         set_cell_background(c_hdr[idx], HEX_HEADER_BG)
         p = c_hdr[idx].paragraphs[0]
         r = p.add_run(hname)
@@ -511,20 +514,18 @@ def create_documentation():
         r.font.color.rgb = RGBColor(255, 255, 255)
 
     comp_data = [
-        ("Bhajan Competition", "Aug 20, 10:00 AM | Auditorium", "Solo and group devotional singing honoring Lord Krishna's divine life."),
-        ("Classical Dance", "Aug 20, 1:30 PM | Open Air Theatre", "Bharatanatyam, Kathak, and traditional Krishna Leela dance performances."),
-        ("Drawing Contest", "Aug 21, 9:30 AM | Seminar Hall 102", "Live canvas painting & sketch contest depicting scenes from Srimad Bhagavata."),
-        ("Rangoli Art", "Aug 21, 11:30 AM | Main Courtyard", "Vibrant Rangoli designs incorporating peacock feathers, flutes, and traditional motifs."),
-        ("Heritage Quiz", "Aug 21, 2:30 PM | Computer Lab 1", "Interactive trivia challenge on Srimad Bhagavad Gita & Indian cultural heritage."),
-        ("Fancy Dress", "Aug 22, 10:00 AM | Auditorium", "Traditional attire showcase depicting Krishna, Radha, Yashoda, and Gopala."),
-        ("Matka Decor & Dahi Handi", "Aug 22, 2:00 PM | College Playground", "Pot decoration contest followed by the traditional Dahi Handi festival celebration."),
-        ("Flower Garland Art", "Aug 20, 9:00 AM | Library Hall", "Creative flower arrangement and altar decoration using fresh lotus & marigolds.")
+        ("Bhagavadgeethe Shloka Patana", "10-09-2026\n3:00 PM", "AV Hall", "Mrs. Wilma", "Sacred recitation and philosophical chanting from Srimad Bhagavad Gita."),
+        ("Kathavachana", "11-09-2026\n3:00 PM", "AV Hall", "Mrs. Vijayashree", "Traditional narrative storytelling and discourse celebrating Sri Krishna Leela."),
+        ("Bhajana Sparde", "15-09-2026\n3:00 PM", "AV Hall", "Mrs. Giriraj Bhat", "Solo and group devotional singing honoring Lord Krishna's divine qualities."),
+        ("Mosaru Kudike", "16-09-2026\nGrand Finale", "Quadrangle", "Mr. Pranam &\nMr. Shreekanth", "Pot decoration contest followed by festive Dahi Handi pot-breaking celebration."),
+        ("Rangoli", "Festival Week", "Main Courtyard", "Mrs. Nirmala", "Vibrant Rangoli designs incorporating peacock feathers, flutes, and traditional motifs.")
     ]
 
     for r_idx, c_row in enumerate(comp_data, start=1):
         row = comp_table.rows[r_idx]
         for c_idx, val in enumerate(c_row):
             cell = row.cells[c_idx]
+            cell.width = widths[c_idx]
             if r_idx % 2 == 0:
                 set_cell_background(cell, HEX_ALT_BG)
             p = cell.paragraphs[0]
@@ -543,9 +544,9 @@ def create_documentation():
 
     add_heading_2("4.4 User Experience & Navigation Utilities")
     ux_bullets = [
+        "Streamlined Static Navigation: Responsive navigation bar featuring direct in-page anchor links (Home, About, Events, Schedule, Gallery, Contact) optimized for zero-overhead static deployment without dynamic profile/session dependencies.",
         "Reading Progress Bar: A dynamic top bar that calculates document scroll depth percentage and fills across the top of the screen in real-time.",
         "Mobile Navigation Drawer: Toggle button converting top navigation into a sleek full-screen drawer on mobile viewports.",
-        "Portal Modal: Interactive modal pop-up for selecting access modes.",
         "Scroll-to-Top Floating Button: Smoothly scrolls the window back to the top when the user scrolls past 400px."
     ]
     for u in ux_bullets:
