@@ -520,7 +520,7 @@ def create_documentation():
         ("Bhajana Sparde", "15-09-2026\n3:00 PM", "AV Hall", "Mr. Giriraj Bhat", "Solo and group devotional singing honoring Lord Krishna's divine qualities."),
         ("Rangoli", "Festival Week", "Main Courtyard", "Mrs. Nirmala", "Vibrant Rangoli designs incorporating peacock feathers, flutes, and traditional motifs."),
         ("Chitra Kala Auction", "16-09-2026\nMorning (10 AM)", "Main Courtyard", "Classroom Bidding\n(₹100 - ₹1,000)", "Grand exhibition of 25+ handmade sketches. Each class purchases at least one artwork via bidding."),
-        ("Mosaru Kudike", "16-09-2026\nGrand Finale", "Quadrangle", "Mr. Pranam &\nMr. Shreekanth", "Pot decoration contest followed by festive Dahi Handi pot-breaking celebration.")
+        ("Mosaru Kudike", "16-09-2026\nGrand Finale", "Quadrangle", "Mr. Pranam &\n Mr. Shreekanth", "Pot decoration contest followed by festive Dahi Handi pot-breaking celebration.")
     ]
 
     for r_idx, c_row in enumerate(comp_data, start=1):
