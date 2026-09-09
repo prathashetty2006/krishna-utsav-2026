@@ -205,6 +205,36 @@ function initCarousel(containerSelector, trackSelector, cardSelector) {
         }
     });
 
+    // Support touch swipe gestures on mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    track.addEventListener("touchstart", (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    track.addEventListener("touchend", (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diffX = touchStartX - touchEndX;
+        if (Math.abs(diffX) > 40) {
+            if (diffX > 0) {
+                // Swiped left -> Next
+                const visibleCount = getVisibleCount();
+                const maxIndex = cards.length - visibleCount;
+                if (currentIndex < maxIndex) {
+                    currentIndex++;
+                    updateSlider();
+                }
+            } else {
+                // Swiped right -> Prev
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateSlider();
+                }
+            }
+        }
+    }, { passive: true });
+
     // Support window resizing and dynamic adjustments
     window.addEventListener("resize", updateSlider);
 

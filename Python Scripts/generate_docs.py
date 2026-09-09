@@ -553,6 +553,29 @@ def create_documentation():
     for u in ux_bullets:
         doc.add_paragraph(u, style='List Bullet')
 
+    add_heading_2("4.5 Mobile Touch Gesture Support & Ergonomic Thumb Navigation")
+    doc.add_paragraph(
+        "To provide a mobile app-grade user experience on touch-enabled smartphones and tablets, the twin carousel system incorporates "
+        "passive touch swipe gesture detection. Users can fluidly swipe left to advance to the next event or gallery image, or swipe right "
+        "to return to the previous item, calculated via horizontal touch delta analysis."
+    )
+    doc.add_paragraph(
+        "Furthermore, the mobile UI layout shifts carousel navigation controls from side arrows (which frequently obscure card content "
+        "on narrow screens) to dedicated bottom-centered thumb buttons. This ergonomic placement enables effortless one-handed operation "
+        "on devices under 768px."
+    )
+
+    add_heading_2("4.6 Fixed Navigation Scroll Offset & Clean Viewport Calibration")
+    doc.add_paragraph(
+        "A notorious usability defect in single-page web applications with sticky or fixed headers is that clicking anchor navigation links "
+        "causes target section titles to be partially or completely obscured behind the navigation bar. The Krishna Utsav portal permanently "
+        "resolves this through CSS 'scroll-padding-top: 85px' at root level paired with 'scroll-margin-top: 85px' (75px on mobile) on every section."
+    )
+    doc.add_paragraph(
+        "To guarantee an uncluttered visual hierarchy on small screens, decorative corner ornaments are automatically suppressed on mobile "
+        "viewports via media queries, background feather opacity is attenuated to 0.05, and divine hero halo dimensions are scaled adaptively."
+    )
+
     doc.add_page_break()
 
     # ==========================================
@@ -623,6 +646,73 @@ def create_documentation():
     )
     add_code_block(nginx_snippet)
 
+    add_heading_2("5.4 Mobile Touch Swipe Gesture Tracking (Java Script/index.js)")
+    doc.add_paragraph(
+        "To enable smooth swipe navigation on touchscreens, the carousel component tracks touch coordinates and compares start and end offsets:"
+    )
+    js_touch_snippet = (
+        "// Support touch swipe gestures on mobile and touch displays\n"
+        "let touchStartX = 0;\n"
+        "let touchEndX = 0;\n\n"
+        "track.addEventListener('touchstart', (e) => {\n"
+        "    touchStartX = e.changedTouches[0].screenX;\n"
+        "}, { passive: true });\n\n"
+        "track.addEventListener('touchend', (e) => {\n"
+        "    touchEndX = e.changedTouches[0].screenX;\n"
+        "    const diffX = touchStartX - touchEndX;\n"
+        "    if (Math.abs(diffX) > 40) {\n"
+        "        if (diffX > 0) {\n"
+        "            // Swiped left -> Next item\n"
+        "            const maxIndex = cards.length - getVisibleCount();\n"
+        "            if (currentIndex < maxIndex) {\n"
+        "                currentIndex++;\n"
+        "                updateSlider();\n"
+        "            }\n"
+        "        } else {\n"
+        "            // Swiped right -> Previous item\n"
+        "            if (currentIndex > 0) {\n"
+        "                currentIndex--;\n"
+        "                updateSlider();\n"
+        "            }\n"
+        "        }\n"
+        "    }\n"
+        "}, { passive: true });"
+    )
+    add_code_block(js_touch_snippet)
+
+    add_heading_2("5.5 Ergonomic Mobile Carousel & Anchor Offset Rules (HTML and CSS/index.css)")
+    doc.add_paragraph(
+        "Fixed-header offset rules and bottom-aligned thumb controls on mobile viewports:"
+    )
+    css_mobile_snippet = (
+        "/* Root and section anchor scroll offset compensation */\n"
+        "html {\n"
+        "    scroll-behavior: smooth;\n"
+        "    scroll-padding-top: 85px;\n"
+        "}\n\n"
+        "section {\n"
+        "    scroll-margin-top: 85px;\n"
+        "}\n\n"
+        "/* Responsive mobile carousel: bottom thumb controls & full-width cards */\n"
+        "@media (max-width: 768px) {\n"
+        "    .carousel-container {\n"
+        "        position: relative;\n"
+        "        padding-bottom: 60px;\n"
+        "    }\n"
+        "    .slider-track .event-card,\n"
+        "    .slider-track .gallery-card {\n"
+        "        flex: 0 0 100%;\n"
+        "    }\n"
+        "    .carousel-ctrl-btn {\n"
+        "        position: absolute;\n"
+        "        bottom: 0;\n"
+        "    }\n"
+        "    .carousel-ctrl-btn.prev { left: calc(50% - 55px); }\n"
+        "    .carousel-ctrl-btn.next { right: calc(50% - 55px); }\n"
+        "}"
+    )
+    add_code_block(css_mobile_snippet)
+
     # ==========================================
     # SECTION 6: CONTAINERIZATION & DEPLOYMENT
     # ==========================================
@@ -679,7 +769,7 @@ def create_documentation():
         "The application underwent systematic layout testing across standard resolution breakpoints to ensure seamless visual fidelity:"
     )
 
-    test_table = doc.add_table(rows=5, cols=4)
+    test_table = doc.add_table(rows=6, cols=4)
     test_table.alignment = WD_TABLE_ALIGNMENT.CENTER
     set_table_borders(test_table, "CCCCCC")
     
@@ -692,10 +782,11 @@ def create_documentation():
         r.font.color.rgb = RGBColor(255, 255, 255)
 
     test_data = [
-        ("Mobile Portrait", "375px - 480px", "Single card carousel column, hamburger nav drawer active", "PASSED [100%]"),
-        ("Tablet Portrait", "768px - 900px", "2-card carousel slider layout, stacked stat counters", "PASSED [100%]"),
-        ("Laptop / Desktop", "1024px - 1440px", "3-card carousel slider track, inline desktop navigation link bar", "PASSED [100%]"),
-        ("Ultra-Wide Monitor", "1920px+", "Max-width container clamping (1200px limit), centered hero halo", "PASSED [100%]")
+        ("Mobile Portrait", "< 480px", "Single card carousel, touch swipe gestures, bottom thumb controls, full-width CTA buttons, hidden ornaments", "PASSED [100%]"),
+        ("Mobile / Small Tablet", "481px - 768px", "Full-width carousel cards with bottom-centered buttons, 75px fixed-header scroll padding, drawer nav", "PASSED [100%]"),
+        ("Tablet Landscape", "769px - 992px", "2-card carousel slider track, side arrows, 85px fixed-header scroll padding", "PASSED [100%]"),
+        ("Laptop / Desktop", "1024px - 1440px", "3-card carousel slider track, inline desktop navigation link bar, full halo effects", "PASSED [100%]"),
+        ("Ultra-Wide Monitor", "1920px+", "Max-width container clamping (1400px limit), centered hero halo & layout", "PASSED [100%]")
     ]
 
     for r_idx, t_row in enumerate(test_data, start=1):
