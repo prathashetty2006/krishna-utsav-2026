@@ -576,6 +576,26 @@ def create_documentation():
         "viewports via media queries, background feather opacity is attenuated to 0.05, and divine hero halo dimensions are scaled adaptively."
     )
 
+    add_heading_2("4.7 Authentic Campus Celebration Gallery Showcase")
+    doc.add_paragraph(
+        "The celebration gallery features authentic high-resolution photographic documentation captured directly at Dr. B.B. Hegde "
+        "First Grade College during the Sri Krishna Janmashtami celebrations. Replacing generic placeholder assets, these four official "
+        "photographs capture the spiritual and cultural essence of the institution:"
+    )
+    gallery_items = [
+        "Inaugural Lamp Lighting Ceremony: Traditional lighting of the sacred brass deepa on the AV Hall stage by esteemed college dignitaries, principal, and faculty coordinators in ceremonial attire.",
+        "Classical Flute & Devotional Recital: Live stage musical performance featuring students playing classical bamboo flutes and mridangam accompanied by devotional chanting.",
+        "Spiritual Discourse (Kathavachana): Keynote address and benediction delivered from the dais commemorating Sri Krishna Leela and timeless ethical teachings.",
+        "Presidential Remarks & Felicitation: Formal presidential address and cultural felicitation honoring participants, judges, and organizing committee members."
+    ]
+    for g in gallery_items:
+        doc.add_paragraph(g, style='List Bullet')
+
+    doc.add_paragraph(
+        "Each photo card incorporates a multi-layer gradient backing, devotional category tag icon, title typography, "
+        "and cubic-bezier hover zoom animation to provide an exhibition-grade viewing experience."
+    )
+
     doc.add_page_break()
 
     # ==========================================
