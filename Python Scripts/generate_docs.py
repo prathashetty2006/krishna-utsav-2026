@@ -517,7 +517,7 @@ def create_documentation():
     comp_data = [
         ("Bhagavadgeethe Shloka Patana", "10-09-2026\n3:00 PM", "AV Hall", "Mrs. Wilma", "Sacred recitation and philosophical chanting from Srimad Bhagavad Gita."),
         ("Kathavachana", "11-09-2026\n3:00 PM", "AV Hall", "Mrs. Vijayashree", "Traditional narrative storytelling and discourse celebrating Sri Krishna Leela."),
-        ("Bhajana Sparde", "15-09-2026\n3:00 PM", "AV Hall", "Mrs. Giriraj Bhat", "Solo and group devotional singing honoring Lord Krishna's divine qualities."),
+        ("Bhajana Sparde", "15-09-2026\n3:00 PM", "AV Hall", "Mr. Giriraj Bhat", "Solo and group devotional singing honoring Lord Krishna's divine qualities."),
         ("Rangoli", "Festival Week", "Main Courtyard", "Mrs. Nirmala", "Vibrant Rangoli designs incorporating peacock feathers, flutes, and traditional motifs."),
         ("Chitra Kala Auction", "16-09-2026\nMorning (10 AM)", "Main Courtyard", "Classroom Bidding\n(₹100 - ₹1,000)", "Grand exhibition of 25+ handmade sketches. Each class purchases at least one artwork via bidding."),
         ("Mosaru Kudike", "16-09-2026\nGrand Finale", "Quadrangle", "Mr. Pranam &\nMr. Shreekanth", "Pot decoration contest followed by festive Dahi Handi pot-breaking celebration.")
