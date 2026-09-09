@@ -1217,13 +1217,14 @@ section {
     }
 
     .slider-track .event-card,
+    .slider-track .timeline-item,
     .slider-track .gallery-card {
         flex: 0 0 calc((100% - 2rem) / 2);
     }
 }
 
 /* ==========================================================================
-   Twin Carousels base styling
+   Twin / Triple Carousels base styling
    ========================================================================== */
 .carousel-container {
     display: flex;
@@ -1248,10 +1249,26 @@ section {
     width: 100%;
 }
 
-/* Event cards and gallery cards are slide items */
-.slider-track .event-card {
+/* Event cards, timeline cards, and gallery cards are slide items */
+.slider-track .event-card,
+.slider-track .timeline-item {
     flex: 0 0 calc((100% - 2 * 2rem) / 3);
     /* exactly 3 items */
+}
+
+.slider-track .timeline-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto;
+    box-sizing: border-box;
+    border: 1px solid rgba(198, 161, 91, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.slider-track .timeline-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
 }
 
 .slider-track .gallery-card {
@@ -1469,6 +1486,7 @@ section {
     }
 
     .slider-track .event-card,
+    .slider-track .timeline-item,
     .slider-track .gallery-card {
         flex: 0 0 100%;
     }

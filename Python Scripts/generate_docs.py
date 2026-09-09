@@ -494,13 +494,13 @@ def create_documentation():
     for h in h_features:
         doc.add_paragraph(h, style='List Bullet')
 
-    add_heading_2("4.2 Interactive Competition Showcase (5 Featured Festival Events)")
+    add_heading_2("4.2 Interactive Competition Showcase (6 Featured Festival Events)")
     doc.add_paragraph(
-        "The portal highlights 5 official cultural competitions along with designated faculty coordinators, venues, and timings "
-        "on an interactive, multi-card responsive slider track:"
+        "The portal highlights 6 official cultural competitions and art events along with designated faculty coordinators, "
+        "bidding rules, venues, and timings on an interactive, multi-card responsive slider track:"
     )
     
-    comp_table = doc.add_table(rows=6, cols=5)
+    comp_table = doc.add_table(rows=7, cols=5)
     comp_table.alignment = WD_TABLE_ALIGNMENT.CENTER
     set_table_borders(comp_table, "CCCCCC")
     
@@ -518,8 +518,9 @@ def create_documentation():
         ("Bhagavadgeethe Shloka Patana", "10-09-2026\n3:00 PM", "AV Hall", "Mrs. Wilma", "Sacred recitation and philosophical chanting from Srimad Bhagavad Gita."),
         ("Kathavachana", "11-09-2026\n3:00 PM", "AV Hall", "Mrs. Vijayashree", "Traditional narrative storytelling and discourse celebrating Sri Krishna Leela."),
         ("Bhajana Sparde", "15-09-2026\n3:00 PM", "AV Hall", "Mrs. Giriraj Bhat", "Solo and group devotional singing honoring Lord Krishna's divine qualities."),
-        ("Mosaru Kudike", "16-09-2026\nGrand Finale", "Quadrangle", "Mr. Pranam &\nMr. Shreekanth", "Pot decoration contest followed by festive Dahi Handi pot-breaking celebration."),
-        ("Rangoli", "Festival Week", "Main Courtyard", "Mrs. Nirmala", "Vibrant Rangoli designs incorporating peacock feathers, flutes, and traditional motifs.")
+        ("Rangoli", "Festival Week", "Main Courtyard", "Mrs. Nirmala", "Vibrant Rangoli designs incorporating peacock feathers, flutes, and traditional motifs."),
+        ("Chitra Kala Auction", "16-09-2026\nMorning (10 AM)", "Main Courtyard", "Classroom Bidding\n(₹100 - ₹1,000)", "Grand exhibition of 25+ handmade sketches. Each class purchases at least one artwork via bidding."),
+        ("Mosaru Kudike", "16-09-2026\nGrand Finale", "Quadrangle", "Mr. Pranam &\nMr. Shreekanth", "Pot decoration contest followed by festive Dahi Handi pot-breaking celebration.")
     ]
 
     for r_idx, c_row in enumerate(comp_data, start=1):
@@ -553,16 +554,15 @@ def create_documentation():
     for u in ux_bullets:
         doc.add_paragraph(u, style='List Bullet')
 
-    add_heading_2("4.5 Mobile Touch Gesture Support & Ergonomic Thumb Navigation")
+    add_heading_2("4.5 Mobile Touch Gesture Support & Unified Triple Carousel System")
     doc.add_paragraph(
-        "To provide a mobile app-grade user experience on touch-enabled smartphones and tablets, the twin carousel system incorporates "
-        "passive touch swipe gesture detection. Users can fluidly swipe left to advance to the next event or gallery image, or swipe right "
-        "to return to the previous item, calculated via horizontal touch delta analysis."
+        "To provide a seamless, interactive user experience and eliminate awkward multi-row grid wrapping when adding events (e.g. 5 or 6 items), "
+        "the portal standardizes a unified Triple Carousel architecture across: (1) Competition Categories, (2) Event Timeline / Schedule, and (3) Celebration Gallery. "
+        "Each section features responsive '<' and '>' toggle buttons, boundary-aware disabled states, and fluid touch swipe gesture detection."
     )
     doc.add_paragraph(
-        "Furthermore, the mobile UI layout shifts carousel navigation controls from side arrows (which frequently obscure card content "
-        "on narrow screens) to dedicated bottom-centered thumb buttons. This ergonomic placement enables effortless one-handed operation "
-        "on devices under 768px."
+        "Users can slide horizontally through all festival timeline milestones without broken grid rows. On mobile screens (under 768px), "
+        "the carousel controls automatically reposition to the bottom center for comfortable one-handed thumb navigation."
     )
 
     add_heading_2("4.6 Fixed Navigation Scroll Offset & Clean Viewport Calibration")
@@ -720,6 +720,7 @@ def create_documentation():
         "        padding-bottom: 60px;\n"
         "    }\n"
         "    .slider-track .event-card,\n"
+        "    .slider-track .timeline-item,\n"
         "    .slider-track .gallery-card {\n"
         "        flex: 0 0 100%;\n"
         "    }\n"

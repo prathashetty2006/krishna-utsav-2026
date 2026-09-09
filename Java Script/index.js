@@ -139,7 +139,14 @@ function initTwinCarousels() {
         ".event-card"
     );
 
-    // 2. Initialize Gallery Carousel
+    // 2. Initialize Timeline / Schedule Carousel
+    initCarousel(
+        "#timelineCarousel",
+        "#timelineContainer",
+        ".timeline-item"
+    );
+
+    // 3. Initialize Gallery Carousel
     initCarousel(
         "#galleryCarousel",
         "#galleryContainer",
