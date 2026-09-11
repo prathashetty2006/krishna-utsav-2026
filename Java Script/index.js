@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initScrollEffects();
     initTwinCarousels();
     initBouncingFeathers();
+    initKrishnaDarshanSlider();
 });
 
 /* ==========================================================================
@@ -310,3 +311,191 @@ function initBouncingFeathers() {
         setupBounce(feather2, -0.4, 0.5, window.innerWidth - 250, window.innerHeight - 250);
     }
 }
+
+/* ==========================================================================
+   6. Continuous Krishna Darshan Slider (3s Auto-advance with Seamless Loop)
+   ========================================================================== */
+function initKrishnaDarshanSlider() {
+    const container = document.getElementById("krishnaSliderContainer");
+    const track = document.getElementById("krishnaSliderTrack");
+    const timerBar = document.getElementById("krishnaTimerBar");
+    const counter = document.getElementById("darshanCounter");
+    const dotsContainer = document.getElementById("krishnaDots");
+    const prevBtn = document.getElementById("krishnaPrev");
+    const nextBtn = document.getElementById("krishnaNext");
+
+    if (!container || !track) return;
+
+    const originalCount = 11; // 11 distinct Krishna images
+    const slideDuration = 3000; // 3 seconds per image
+    const transitionMs = 700; // 0.7s transition duration
+
+    let currentIndex = 0;
+    let progressStartTime = null;
+    let animFrameId = null;
+    let isPaused = false;
+    let isTransitioning = false;
+
+    // Generate pagination dots
+    if (dotsContainer) {
+        dotsContainer.innerHTML = "";
+        for (let i = 0; i < originalCount; i++) {
+            const dot = document.createElement("button");
+            dot.className = "krishna-dot" + (i === 0 ? " active" : "");
+            dot.setAttribute("aria-label", `Go to Krishna Darshan ${i + 1}`);
+            dot.addEventListener("click", () => {
+                if (isTransitioning) return;
+                goToSlide(i);
+            });
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    function updateIndicators(displayIdx) {
+        if (counter) {
+            counter.textContent = `${displayIdx + 1} / ${originalCount}`;
+        }
+        if (dotsContainer) {
+            const dots = dotsContainer.querySelectorAll(".krishna-dot");
+            dots.forEach((d, idx) => {
+                d.classList.toggle("active", idx === displayIdx);
+            });
+        }
+    }
+
+    function renderSlide(animate = true) {
+        if (animate) {
+            track.style.transition = `transform ${transitionMs}ms cubic-bezier(0.4, 0, 0.2, 1)`;
+        } else {
+            track.style.transition = "none";
+        }
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+        const displayIdx = currentIndex >= originalCount ? 0 : currentIndex;
+        updateIndicators(displayIdx);
+    }
+
+    function nextSlide() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        currentIndex++;
+        renderSlide(true);
+    }
+
+    function prevSlide() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        if (currentIndex === 0) {
+            // Jump instantly to the cloned end, then animate to last slide
+            currentIndex = originalCount;
+            renderSlide(false);
+            track.offsetHeight; // force reflow
+            currentIndex = originalCount - 1;
+            renderSlide(true);
+        } else {
+            currentIndex--;
+            renderSlide(true);
+        }
+    }
+
+    function goToSlide(targetIdx) {
+        currentIndex = targetIdx;
+        renderSlide(true);
+        resetTimer();
+    }
+
+    // Seamless loop reset when sliding past 11th image to clone
+    track.addEventListener("transitionend", () => {
+        isTransitioning = false;
+        if (currentIndex >= originalCount) {
+            // Silently snap back to the first slide without animation
+            currentIndex = 0;
+            renderSlide(false);
+        }
+    });
+
+    // 3-second Progress bar animation & automatic progression
+    function startProgress() {
+        if (animFrameId) cancelAnimationFrame(animFrameId);
+        progressStartTime = performance.now();
+
+        function frame(now) {
+            if (isPaused) {
+                animFrameId = requestAnimationFrame(frame);
+                return;
+            }
+            const elapsed = now - progressStartTime;
+            const pct = Math.min(100, (elapsed / slideDuration) * 100);
+            if (timerBar) {
+                timerBar.style.width = `${pct}%`;
+            }
+
+            if (elapsed < slideDuration) {
+                animFrameId = requestAnimationFrame(frame);
+            } else {
+                if (timerBar) timerBar.style.width = "0%";
+                nextSlide();
+                startProgress();
+            }
+        }
+
+        animFrameId = requestAnimationFrame(frame);
+    }
+
+    function resetTimer() {
+        if (timerBar) timerBar.style.width = "0%";
+        startProgress();
+    }
+
+    // Manual navigation buttons
+    if (nextBtn) {
+        nextBtn.addEventListener("click", () => {
+            nextSlide();
+            resetTimer();
+        });
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener("click", () => {
+            prevSlide();
+            resetTimer();
+        });
+    }
+
+    // Pause on hover
+    container.addEventListener("mouseenter", () => {
+        isPaused = true;
+    });
+
+    container.addEventListener("mouseleave", () => {
+        isPaused = false;
+        const currentWidthPct = parseFloat(timerBar ? timerBar.style.width : 0) || 0;
+        progressStartTime = performance.now() - (currentWidthPct / 100) * slideDuration;
+    });
+
+    // Mobile touch swipe gesture
+    let touchStartX = 0;
+    container.addEventListener("touchstart", (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        isPaused = true;
+    }, { passive: true });
+
+    container.addEventListener("touchend", (e) => {
+        const touchEndX = e.changedTouches[0].screenX;
+        const diffX = touchStartX - touchEndX;
+        isPaused = false;
+        resetTimer();
+        if (Math.abs(diffX) > 40) {
+            if (diffX > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        }
+    }, { passive: true });
+
+    // Initial render
+    renderSlide(false);
+    startProgress();
+}
+

@@ -162,7 +162,73 @@
 
         <div class="about-container">
             <div class="about-image reveal-left">
-                <img src="Image and Audio/krishna-hero.png" alt="Krishna">
+                <div class="krishna-darshan-card">
+                    <div class="krishna-darshan-header">
+                        <div class="krishna-darshan-title">
+                            <i class="fa-solid fa-om gold-icon"></i>
+                            <span>Divine Darshan</span>
+                        </div>
+                        <span class="darshan-counter" id="darshanCounter">1 / 11</span>
+                    </div>
+
+                    <div class="krishna-slider-container" id="krishnaSliderContainer">
+                        <div class="krishna-slider-track" id="krishnaSliderTrack">
+                            <div class="krishna-slide" data-index="1">
+                                <img src="Image and Audio/Krishna/krishna-1.jpeg" alt="Lord Krishna Darshan 1" loading="eager">
+                            </div>
+                            <div class="krishna-slide" data-index="2">
+                                <img src="Image and Audio/Krishna/krishna-2.jpeg" alt="Lord Krishna Darshan 2" loading="lazy">
+                            </div>
+                            <div class="krishna-slide" data-index="3">
+                                <img src="Image and Audio/Krishna/krishna-3.jpeg" alt="Lord Krishna Darshan 3" loading="lazy">
+                            </div>
+                            <div class="krishna-slide" data-index="4">
+                                <img src="Image and Audio/Krishna/krishna-4.jpeg" alt="Lord Krishna Darshan 4" loading="lazy">
+                            </div>
+                            <div class="krishna-slide" data-index="5">
+                                <img src="Image and Audio/Krishna/krishna-5.jpeg" alt="Lord Krishna Darshan 5" loading="lazy">
+                            </div>
+                            <div class="krishna-slide" data-index="6">
+                                <img src="Image and Audio/Krishna/krishna-6.jpeg" alt="Lord Krishna Darshan 6" loading="lazy">
+                            </div>
+                            <div class="krishna-slide" data-index="7">
+                                <img src="Image and Audio/Krishna/krishna-7.jpeg" alt="Lord Krishna Darshan 7" loading="lazy">
+                            </div>
+                            <div class="krishna-slide" data-index="8">
+                                <img src="Image and Audio/Krishna/krishna-8.jpeg" alt="Lord Krishna Darshan 8" loading="lazy">
+                            </div>
+                            <div class="krishna-slide" data-index="9">
+                                <img src="Image and Audio/Krishna/krishna-9.jpeg" alt="Lord Krishna Darshan 9" loading="lazy">
+                            </div>
+                            <div class="krishna-slide" data-index="10">
+                                <img src="Image and Audio/Krishna/krishna-10.jpeg" alt="Lord Krishna Darshan 10" loading="lazy">
+                            </div>
+                            <div class="krishna-slide" data-index="11">
+                                <img src="Image and Audio/Krishna/krishna-11.jpeg" alt="Lord Krishna Darshan 11" loading="lazy">
+                            </div>
+                            <!-- Seamless infinite loop clone -->
+                            <div class="krishna-slide" data-index="1-clone" aria-hidden="true">
+                                <img src="Image and Audio/Krishna/krishna-1.jpeg" alt="Lord Krishna Darshan 1" loading="lazy">
+                            </div>
+                        </div>
+
+                        <!-- 3-second countdown timer bar -->
+                        <div class="krishna-timer-progress">
+                            <div class="krishna-timer-bar" id="krishnaTimerBar"></div>
+                        </div>
+
+                        <!-- Navigation Arrows -->
+                        <button class="krishna-nav-btn prev" id="krishnaPrev" aria-label="Previous Darshan">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <button class="krishna-nav-btn next" id="krishnaNext" aria-label="Next Darshan">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- 11 Pagination Navigation Dots -->
+                    <div class="krishna-dots-container" id="krishnaDots"></div>
+                </div>
             </div>
 
             <div class="about-content reveal-right">

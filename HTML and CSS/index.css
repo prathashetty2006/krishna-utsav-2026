@@ -273,16 +273,194 @@ section {
 
 .about-image {
     flex: 1;
-    max-width: 280px;
+    max-width: 330px;
     margin: 0 auto;
     width: 100%;
 }
 
-.about-image img {
+/* ==========================================================================
+   Continuous Krishna Darshan Slider (3s Auto-advance)
+   ========================================================================== */
+.krishna-darshan-card {
+    position: relative;
     width: 100%;
-    height: auto;
+    background: var(--white);
+    border: 2px solid rgba(198, 161, 91, 0.4);
+    border-radius: 22px;
+    padding: 10px 10px 12px;
+    box-shadow: 0 16px 36px rgba(23, 58, 106, 0.1), 0 0 24px rgba(198, 161, 91, 0.16);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.krishna-darshan-card:hover {
+    box-shadow: 0 20px 45px rgba(23, 58, 106, 0.15), 0 0 32px rgba(198, 161, 91, 0.28);
+}
+
+.krishna-darshan-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 8px 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.krishna-darshan-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--primary);
+    font-family: var(--font-heading);
+    letter-spacing: 0.5px;
+}
+
+.krishna-darshan-title .gold-icon {
+    color: var(--secondary);
+    font-size: 0.95rem;
+}
+
+.darshan-counter {
+    background: rgba(198, 161, 91, 0.15);
+    color: var(--secondary);
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.krishna-slider-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
     border-radius: 16px;
+    overflow: hidden;
+    background: #0b1329;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.krishna-slider-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+}
+
+.krishna-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.krishna-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
     display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* 3-second animated progress timer bar */
+.krishna-timer-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 5;
+    overflow: hidden;
+}
+
+.krishna-timer-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--secondary), #ffd700);
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+}
+
+/* Nav control buttons */
+.krishna-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(23, 58, 106, 0.8);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    color: #ffffff;
+    border: 1px solid rgba(198, 161, 91, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.85rem;
+    opacity: 0;
+    transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s;
+    z-index: 6;
+}
+
+.krishna-nav-btn:hover {
+    background: var(--secondary);
+    color: var(--primary);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.krishna-nav-btn.prev {
+    left: 8px;
+}
+
+.krishna-nav-btn.next {
+    right: 8px;
+}
+
+.krishna-slider-container:hover .krishna-nav-btn {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .krishna-nav-btn {
+        opacity: 0.85;
+    }
+}
+
+/* 11 Navigation dots */
+.krishna-dots-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.krishna-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(198, 161, 91, 0.3);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.krishna-dot:hover {
+    background: rgba(198, 161, 91, 0.7);
+    transform: scale(1.2);
+}
+
+.krishna-dot.active {
+    width: 18px;
+    border-radius: 9px;
+    background: var(--secondary);
+    box-shadow: 0 0 8px rgba(198, 161, 91, 0.6);
 }
 
 .about-content {

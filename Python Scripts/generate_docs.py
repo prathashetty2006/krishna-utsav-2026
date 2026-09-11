@@ -596,6 +596,24 @@ def create_documentation():
         "and cubic-bezier hover zoom animation to provide an exhibition-grade viewing experience."
     )
 
+    add_heading_2("4.8 Sacred 11-Alankara Krishna Continuous Darshan Slideshow")
+    doc.add_paragraph(
+        "In the primary 'About Krishna Janmashtami' section, the single static hero illustration is enhanced with an authentic "
+        "11-Alankara sacred darshan slideshow displaying high-resolution photographs of Lord Krishna (located in 'Image and Audio/Krishna/'). "
+        "This dynamic component presents the deity in eleven distinct traditional festive alankaras and temple adornments."
+    )
+    darshan_features = [
+        "Continuous 3-Second Auto-Progression: The slider automatically transitions every 3.0 seconds (3,000ms) with smooth 700ms cubic-bezier translation curves.",
+        "Infinite Seamless Loop Architecture: Employs a zero-stutter cloned boundary technique (11 real slides + 1 seamless clone) that silently snaps from index 11 back to index 0 on transitionend, delivering an unbroken forward-gliding motion without jarring rewinds.",
+        "Real-Time Golden Progress Bar: A 4px glowing gold gradient timer bar fills continuously across the bottom of the active image frame over 3 seconds, giving clear visual cues of countdown progression.",
+        "Active Darshan Counter & Header Badge: Displays an ornate gold 'ॐ DIVINE DARSHAN' title header alongside a live-updating counter badge ('1 / 11' through '11 / 11').",
+        "11 Pagination Indicator Dots: Interactive navigation dots with a stretched gold pill animation for the currently active slide, allowing one-click jumping to any specific darshan.",
+        "Touch Swipe Gesture & Overlay Navigation: Supports touch swipe gestures on mobile viewports as well as glassmorphic Next/Previous chevron buttons.",
+        "Intelligent Pause-on-Hover: Automatically freezes slider progression when the user moves their cursor over an idol image, allowing unhurried devotion and detailed viewing."
+    ]
+    for d in darshan_features:
+        doc.add_paragraph(d, style='List Bullet')
+
     doc.add_page_break()
 
     # ==========================================
@@ -733,6 +751,41 @@ def create_documentation():
         "}"
     )
     add_code_block(css_mobile_snippet)
+
+    add_heading_2("5.6 Continuous Krishna Darshan Slider Architecture (Java Script/index.js & HTML and CSS/index.css)")
+    doc.add_paragraph(
+        "The following snippet highlights the requestAnimationFrame-driven 3-second progress timer and seamless loop transition handler:"
+    )
+    js_slider_snippet = (
+        "function initKrishnaDarshanSlider() {\n"
+        "    const container = document.getElementById('krishnaSliderContainer');\n"
+        "    const track = document.getElementById('krishnaSliderTrack');\n"
+        "    const timerBar = document.getElementById('krishnaTimerBar');\n"
+        "    const slideDuration = 3000; // 3 seconds per alankara\n"
+        "    let currentIndex = 0;\n\n"
+        "    // Seamless infinite forward loop via boundary clone\n"
+        "    track.addEventListener('transitionend', () => {\n"
+        "        isTransitioning = false;\n"
+        "        if (currentIndex >= originalCount) {\n"
+        "            currentIndex = 0;\n"
+        "            renderSlide(false); // snap silently without animation\n"
+        "        }\n"
+        "    });\n\n"
+        "    // 3-second progress timer\n"
+        "    function frame(now) {\n"
+        "        const elapsed = now - progressStartTime;\n"
+        "        const pct = Math.min(100, (elapsed / slideDuration) * 100);\n"
+        "        if (timerBar) timerBar.style.width = pct + '%';\n"
+        "        if (elapsed < slideDuration) {\n"
+        "            animFrameId = requestAnimationFrame(frame);\n"
+        "        } else {\n"
+        "            nextSlide();\n"
+        "            startProgress();\n"
+        "        }\n"
+        "    }\n"
+        "}"
+    )
+    add_code_block(js_slider_snippet)
 
     # ==========================================
     # SECTION 6: CONTAINERIZATION & DEPLOYMENT
