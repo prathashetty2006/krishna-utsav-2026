@@ -42,6 +42,9 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 85px;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
 }
 
 body {
@@ -51,6 +54,8 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     position: relative;
+    width: 100%;
+    max-width: 100%;
 }
 
 /* ==========================================================================
@@ -60,7 +65,8 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
+    width: 100%;
+    max-width: 100%;
     height: 100vh;
     z-index: 0;
     pointer-events: none;
@@ -237,9 +243,11 @@ ul {
 section {
     padding: 3rem 5%;
     max-width: 1400px;
+    width: 100%;
     margin: 0 auto;
     position: relative;
     scroll-margin-top: 85px;
+    box-sizing: border-box;
 }
 
 /* --- Hero Section --- */
@@ -249,12 +257,16 @@ section {
     justify-content: space-between;
     min-height: 100vh;
     padding-top: 120px;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
     /* Offset for fixed header */
 }
 
 .hero-content {
     flex: 1;
     max-width: 600px;
+    width: 100%;
     z-index: 2;
 }
 
@@ -1505,13 +1517,16 @@ section {
         flex-direction: column;
         position: fixed;
         top: 0;
-        right: -100%;
+        right: 0;
+        transform: translateX(100%);
+        visibility: hidden;
+        pointer-events: none;
         width: 280px;
         height: 100vh;
         background: var(--white);
         box-shadow: -5px 0 25px rgba(0, 0, 0, 0.08);
         padding: 80px 30px;
-        transition: right 0.4s ease;
+        transition: transform 0.35s ease, visibility 0.35s ease;
         z-index: 999;
         align-items: flex-start;
         gap: 1.5rem;
@@ -1519,7 +1534,9 @@ section {
     }
 
     .nav-links.active {
-        right: 0;
+        transform: translateX(0);
+        visibility: visible;
+        pointer-events: auto;
     }
 
     .menu-btn {
@@ -1679,23 +1696,21 @@ section {
 }
 
 @media (max-width: 768px) {
-    /* Prevent decorative elements from obscuring content on mobile */
-    .corner-ornament {
-        display: none !important;
-    }
-
+    /* Prevent decorative elements from obscuring content or causing overflow on mobile */
+    .corner-ornament,
     .bg-peacock-feather-1,
     .bg-peacock-feather-2 {
-        width: 120px !important;
-        height: auto !important;
-        opacity: 0.35 !important;
+        display: none !important;
     }
-
 
     /* Section Spacing & Anchors */
     section {
         padding: 2.5rem 1.25rem;
         scroll-margin-top: 75px;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: clip;
+        box-sizing: border-box;
     }
 
     /* Hero Section Polish */
@@ -1703,6 +1718,10 @@ section {
         padding-top: 95px;
         padding-bottom: 2rem;
         min-height: auto;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+        box-sizing: border-box;
     }
 
     .college-name {
@@ -1716,17 +1735,23 @@ section {
     .hero h1 {
         font-size: 2.25rem;
         line-height: 1.15;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 
     .hero h3 {
         font-size: 1.05rem;
         margin-bottom: 1.2rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 
     .hero-description {
         font-size: 0.92rem;
         line-height: 1.7;
         margin-bottom: 1.8rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 
     .hero-image {
@@ -1756,6 +1781,11 @@ section {
     }
 
     .mandala {
+        width: 300px;
+        height: 300px;
+    }
+
+    .spiritual-glow-bg {
         width: 300px;
         height: 300px;
     }
@@ -1877,6 +1907,15 @@ section {
     /* Centered Footer */
     footer {
         padding: 4rem 1.5rem 2.5rem !important;
+        overflow: hidden;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .footer-mandala-bg {
+        width: 340px;
+        height: 340px;
     }
 
     .footer-content h2 {
@@ -1891,6 +1930,10 @@ section {
 @media (max-width: 480px) {
     section {
         padding: 2rem 1rem;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: clip;
+        box-sizing: border-box;
     }
 
     .navbar {
@@ -1926,6 +1969,22 @@ section {
         width: 100%;
         justify-content: center;
         padding: 11px 20px;
+    }
+
+    .mandala,
+    .spiritual-glow-bg {
+        width: 250px !important;
+        height: 250px !important;
+    }
+
+    .divine-aura {
+        width: 250px !important;
+        height: 250px !important;
+    }
+
+    .footer-mandala-bg {
+        width: 280px !important;
+        height: 280px !important;
     }
 
     .section-title h2 {

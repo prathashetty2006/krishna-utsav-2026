@@ -254,6 +254,9 @@ function initCarousel(containerSelector, trackSelector, cardSelector) {
    5. Bouncing Peacock Feathers (Screensaver Style Animation)
    ========================================================================== */
 function initBouncingFeathers() {
+    // Disable screensaver floating feathers on mobile viewports
+    if (window.innerWidth <= 768) return;
+
     const feather1 = document.querySelector(".bg-peacock-feather-1");
     const feather2 = document.querySelector(".bg-peacock-feather-2");
 

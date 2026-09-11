@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Official Invitation | Krishna Utsav 2026 - Dr. B. B. Hegde First Grade College,Kundapura</title>
+    <meta name="description"
+        content="The Department of Computer Applications in association with Student Welfare Council cordially invites you to the vibrant and soulful celebration of Shri Krishna Janmashtami 2026 at Dr. B. B. Hegde First Grade College, Kundapura.">
+
+    <!-- Open Graph for WhatsApp and Social Media Preview -->
+    <meta property="og:title" content="🌸 Krishna Janmashtami 2026 Official Invitation | Dr. B. B. Hegde College">
+    <meta property="og:description"
+        content="Celebrate the Divine Spirit of Krishna Janmashtami with enchanting cultural performances, devotional music, and joyful moments. Register now: https://krishna-utsav-2026.vercel.app">
+    <meta property="og:url" content="https://krishna-utsav-2026.vercel.app/invitation.html">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- QRCode.js & html2canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="HTML and CSS/invitation.css">
+
+    <!-- JS -->
+    <script src="Java Script/invitation.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Ambient Visual Glow Background -->
+    <div class="ambient-bg" aria-hidden="true">
+        <div class="ambient-glow-1"></div>
+        <div class="ambient-glow-2"></div>
+        <div class="ambient-stars"></div>
+    </div>
+
+    <!-- Hidden Audio Ambient Player -->
+    <audio id="invFluteAudio" loop preload="auto">
+        <source src="Image and Audio/krishna_flute.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Top Action Toolbar -->
+    <nav class="action-bar" aria-label="Invitation Utilities">
+        <a href="index.html" class="back-home-btn">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span>Main Festival Portal</span>
+        </a>
+
+        <div class="utility-buttons">
+            <button id="downloadCardBtn" class="action-btn btn-primary-action" aria-label="Download Invitation Card">
+                <i class="fa-solid fa-download"></i>
+                <span>Download Poster</span>
+            </button>
+
+            <button id="shareWhatsAppBtn" class="action-btn btn-secondary-action" aria-label="Share via WhatsApp">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>Share WhatsApp</span>
+            </button>
+
+            <button id="copyLinkBtn" class="action-btn"
+                style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: #fff;"
+                aria-label="Copy Link">
+                <i class="fa-regular fa-copy"></i>
+                <span>Copy Link</span>
+            </button>
+
+            <button id="invSoundBtn" class="btn-sound-action" aria-label="Toggle Flute Music"
+                title="Play Devotional Flute">
+                <i class="fa-solid fa-music"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Invitation Poster Container (For Display & Export) -->
+    <main class="invitation-poster-wrapper">
+        <div class="invitation-card" id="invitationCardElement">
+
+            <!-- Corner Decorative Tech/Spiritual Ornaments -->
+            <div class="inv-corner top-left"></div>
+            <div class="inv-corner top-right"></div>
+            <div class="inv-corner bottom-left"></div>
+            <div class="inv-corner bottom-right"></div>
+
+            <!-- Background Circuit Light Overlay -->
+            <div class="card-circuit-overlay"></div>
+
+            <!-- 1. POSTER HEADER: College Details & Badges -->
+            <header class="poster-header">
+                <div class="header-logo-left">
+                    <img src="Image and Audio/college-logo.png" alt="Dr. B.B. Hegde College Crest">
+                </div>
+
+                <div class="header-title-box">
+                    <h1 class="college-name-main">Dr. B. B. Hegde First Grade College</h1>
+                    <div class="college-location-line">
+                        <span class="location-divider-dot"></span>
+                        <span class="college-location-text">KUNDAPURA – 576201</span>
+                        <span class="location-divider-dot"></span>
+                    </div>
+                    <p class="college-accreditation">(Accredited by NAAC with 'B' Grade)</p>
+                    <p class="college-affiliation">Affiliated to Mangalore University</p>
+                </div>
+
+                <div class="header-logo-right">
+                    <div class="mayur-emblem" title="Lord Krishna Mayur Pankh">
+                        <img src="Image and Audio/peacock-feather.png" alt="Divine Peacock Feather Emblem">
+                    </div>
+                </div>
+            </header>
+
+            <!-- Tech / Spiritual Divider -->
+            <div class="header-divider-line"></div>
+
+            <!-- 2. PRESENTER SECTION -->
+            <section class="presenter-box">
+                <p class="presenter-dept">DEPARTMENT OF COMPUTER APPLICATIONS</p>
+                <p class="presenter-assoc">IN ASSOCIATION WITH THE STUDENT WELFARE COUNCIL</p>
+                <div class="presents-badge">PRESENTS</div>
+            </section>
+
+            <!-- 3. MAIN GLOWING EVENT TITLE -->
+            <section class="poster-hero-title">
+                <div class="title-glow-aura"></div>
+                <h2 class="hero-main-heading">KRISHNA UTSAV</h2>
+                <div class="hero-edition-number">2K26</div>
+
+                <div class="tagline-pill-banner">
+                    <span class="pill-bracket">&lt;</span>
+                    <span>CELEBRATING THE DIVINE SPIRIT OF LORD KRISHNA</span>
+                    <span class="pill-bracket">&gt;</span>
+                </div>
+            </section>
+
+            <!-- 4. SOULFUL INVITATION TEXT (From Announcement) -->
+            <article class="invitation-body-msg">
+                <p>
+                    🌸 The <strong>Department of Computer Applications</strong> in association with the
+                    <strong>Student Welfare Council</strong> is delighted to invite you to a vibrant and soulful
+                    celebration of
+                    <strong>Shri Krishna Janmashtami</strong>! 💫 Immerse yourself in the festive spirit with enchanting
+                    cultural performances,
+                    devotional music, and joyous moments that bring alive the stories and teachings of Lord Krishna.
+                    🎶💃✨
+                </p>
+            </article>
+
+            <!-- 5. THREE HIGHLIGHT BADGES -->
+            <section class="event-info-badges" aria-label="Event Highlights">
+                <div class="info-badge-card">
+                    <div class="badge-icon-box gold-accent">
+                        <i class="fa-regular fa-calendar-days"></i>
+                    </div>
+                    <div class="badge-text-box">
+                        <span class="badge-label">DATE</span>
+                        <span class="badge-val">10/09/2026 – 16/09/2026</span>
+                    </div>
+                </div>
+
+                <div class="info-badge-card">
+                    <div class="badge-icon-box">
+                        <i class="fa-regular fa-clock"></i>
+                    </div>
+                    <div class="badge-text-box">
+                        <span class="badge-label">TIMINGS</span>
+                        <span class="badge-val">Daily Sessions & Finale</span>
+                    </div>
+                </div>
+
+                <div class="info-badge-card">
+                    <div class="badge-icon-box gold-accent">
+                        <i class="fa-solid fa-users-rays"></i>
+                    </div>
+                    <div class="badge-text-box">
+                        <span class="badge-label">CELEBRATION</span>
+                        <span class="badge-val">Culture, Music & Joy</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. ORGANIZED BY -->
+            <section class="organized-by-wrapper">
+                <div class="org-label">ORGANIZED BY</div>
+                <h3 class="org-title-main">DEPARTMENT OF COMPUTER APPLICATIONS</h3>
+                <h4 class="org-title-sub">IN ASSOCIATION WITH STUDENT WELFARE COUNCIL</h4>
+            </section>
+
+            <!-- 7. VENUE CARD -->
+            <section class="venue-styled-box">
+                <div class="venue-pin-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div class="venue-text-content">
+                    <h4>Dr. B. B. Hegde First Grade College, Kundapura</h4>
+                    <p>College Auditorium & Main Campus Courtyard</p>
+                </div>
+            </section>
+
+            <!-- 8. REGISTRATION & QR CODE SECTION -->
+            <section class="portal-register-section">
+                <div class="register-content-left">
+                    <span class="register-tag-pill">
+                        <i class="fa-solid fa-globe"></i> Official Event Portal
+                    </span>
+                    <h4>For More Details & Registration</h4>
+                    <a href="https://krishna-utsav-2026.vercel.app" class="register-url-link" target="_blank"
+                        rel="noopener noreferrer">
+                        <i class="fa-solid fa-link"></i>
+                        <span>https://krishna-utsav-2026.vercel.app</span>
+                    </a>
+                </div>
+
+                <div class="qr-code-box">
+                    <div id="invitationQrCode"></div>
+                    <span class="qr-scan-label">Scan to Visit</span>
+                </div>
+            </section>
+
+            <!-- 9. FOOTER MOTTO -->
+            <footer class="poster-bottom-motto">
+                DEVOTION &bull; CULTURE &bull; CELEBRATION
+            </footer>
+
+        </div>
+    </main>
+
+    <!-- Interactive Feedback Toast -->
+    <div id="invitationToast" class="invitation-toast"></div>
+
+</body>
+
+</html>
