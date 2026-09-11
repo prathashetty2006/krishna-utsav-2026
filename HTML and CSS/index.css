@@ -2,18 +2,29 @@
    Design System & Variables
    ========================================================================== */
 :root {
-    --primary: #173a6a;
-    /* Deep Spiritual Indigo/Navy */
+    --primary: #0d233e;
+    /* Deep Spiritual Navy / High-Contrast Indigo */
+    --primary-light: #173a6a;
+    /* Spiritual Indigo Accent */
     --secondary: #c6a15b;
-    /* Elegant Gold */
+    /* Devotional Gold */
+    --secondary-dark: #8c5807;
+    /* Deep Gold for text on light backgrounds */
+    --gold-text: #824f05;
+    /* High-contrast Sacred Ochre Gold */
+    --gold-light-text: #ffd56b;
+    /* Radiant Gold for dark backgrounds/overlays */
     --secondary-light: #dfc89d;
-    --peacock: #0f766e;
-    /* Teal/Peacock Green */
+    --peacock: #0a635c;
+    /* Deep Peacock Green */
     --bg-color: #f9f7f1;
     /* Sacred Cream/Off-white */
     --white: #ffffff;
-    --text-dark: #2d3748;
-    --text-muted: #718096;
+    --text-dark: #1e293b;
+    /* Deep Slate for maximum legibility */
+    --text-muted: #334155;
+    /* High-contrast dark slate (replaces washed-out grey) */
+    --text-subtle: #475569;
     --font-heading: 'Cinzel', serif;
     --font-body: 'Poppins', sans-serif;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -61,9 +72,20 @@ body {
     height: 100%;
     object-fit: cover;
     object-position: center center;
-    opacity: 0.42;
+    opacity: 0.30;
     mix-blend-mode: multiply;
-    filter: saturate(1.22) contrast(1.06);
+    filter: saturate(1.18) contrast(1.04);
+}
+
+.global-page-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 35%, rgba(249, 247, 241, 0.35) 0%, rgba(249, 247, 241, 0.70) 100%);
+    pointer-events: none;
 }
 
 a {
@@ -80,34 +102,47 @@ ul {
    ========================================================================== */
 .section-title {
     text-align: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     position: relative;
     z-index: 2;
 }
 
 .sub-heading {
-    color: var(--secondary);
+    color: var(--gold-text);
+    background: rgba(255, 255, 255, 0.94);
+    border: 1.5px solid rgba(198, 161, 91, 0.45);
+    border-radius: 24px;
+    padding: 6px 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
     text-transform: uppercase;
     font-size: 0.85rem;
     letter-spacing: 2px;
-    font-weight: 600;
-    display: block;
-    margin-bottom: 0.5rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    box-shadow: 0 4px 15px rgba(13, 35, 62, 0.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .section-title h2 {
     font-family: var(--font-heading);
     color: var(--primary);
-    font-size: 2.5rem;
-    font-weight: 700;
+    font-size: 2.6rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 14px rgba(255, 255, 255, 0.98), 0 0 24px rgba(255, 255, 255, 0.9);
 }
 
 .gold-underline {
-    width: 60px;
-    height: 3px;
-    background: var(--secondary);
-    margin: 15px auto 0;
-    border-radius: 2px;
+    width: 70px;
+    height: 4px;
+    background: linear-gradient(90deg, #b8770a, #e2b146, #b8770a);
+    margin: 16px auto 0;
+    border-radius: 3px;
+    box-shadow: 0 2px 8px rgba(184, 119, 10, 0.4);
 }
 
 /* ==========================================================================
@@ -225,15 +260,23 @@ section {
 
 .college-name {
     display: inline-block;
-    background: rgba(198, 161, 91, 0.1);
-    color: var(--secondary);
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
+    background: rgba(255, 255, 255, 0.94);
+    color: var(--gold-text);
+    border: 1.5px solid rgba(198, 161, 91, 0.5);
+    padding: 8px 18px;
+    border-radius: 24px;
+    font-size: 0.88rem;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 1.5rem;
+    box-shadow: 0 4px 15px rgba(13, 35, 62, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.college-name .gold-icon {
+    color: #b8770a;
 }
 
 .hero h1 {
@@ -242,28 +285,36 @@ section {
     color: var(--primary);
     line-height: 1.1;
     margin-bottom: 1rem;
-    text-shadow: 0 2px 6px rgba(255, 255, 255, 0.7);
+    text-shadow: 0 2px 14px rgba(255, 255, 255, 0.98), 0 0 24px rgba(255, 255, 255, 0.9);
 }
 
 .gold-year {
-    color: var(--secondary);
+    color: #a36500;
+    font-weight: 800;
+    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.95), 0 0 16px rgba(255, 215, 0, 0.45);
 }
 
 .hero h3 {
-    font-size: 1.25rem;
-    color: #0b6058;
-    font-weight: 600;
+    font-size: 1.28rem;
+    color: #064e47;
+    font-weight: 700;
     margin-bottom: 1.5rem;
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    text-shadow: 0 1px 8px rgba(255, 255, 255, 0.95), 0 0 18px rgba(255, 255, 255, 0.9);
 }
 
 .hero-description {
     color: #1e293b;
     font-size: 1.05rem;
-    font-weight: 450;
+    font-weight: 500;
     margin-bottom: 2.5rem;
     line-height: 1.85;
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 1.3rem 1.6rem;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    box-shadow: 0 10px 25px rgba(13, 35, 62, 0.07);
 }
 
 .hero-actions {
@@ -496,10 +547,10 @@ section {
 }
 
 .quote-badge {
-    color: var(--secondary);
-    font-size: 2rem;
+    color: var(--gold-text);
+    font-size: 2.2rem;
     margin-bottom: 1rem;
-    opacity: 0.5;
+    opacity: 0.85;
 }
 
 .about-content p {
@@ -515,25 +566,27 @@ section {
 }
 
 .stat-card {
-    background: var(--bg-color);
+    background: rgba(249, 247, 241, 0.95);
     padding: 1.5rem;
     border-radius: 16px;
     text-align: center;
     flex: 1;
-    border: 1px solid rgba(198, 161, 91, 0.15);
+    border: 1.5px solid rgba(198, 161, 91, 0.35);
+    box-shadow: 0 4px 15px rgba(13, 35, 62, 0.04);
 }
 
 .stat-num {
     display: block;
     font-family: var(--font-heading);
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     color: var(--primary);
-    font-weight: 700;
+    font-weight: 800;
 }
 
 .stat-label {
-    font-size: 0.8rem;
-    color: var(--text-muted);
+    font-size: 0.82rem;
+    color: #334155;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -549,7 +602,7 @@ section {
     background: var(--white);
     padding: 2rem;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border-left: 5px solid var(--primary);
     display: flex;
@@ -557,12 +610,48 @@ section {
 }
 
 .event-card:nth-child(even) {
-    border-left-color: var(--secondary);
+    border-left-color: #b8770a;
 }
 
 .event-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+.event-card strong[style*="text-transform: uppercase"] {
+    color: var(--gold-text) !important;
+    background: rgba(198, 161, 91, 0.18) !important;
+    font-weight: 700 !important;
+}
+
+.event-card h3 {
+    color: var(--primary) !important;
+    font-weight: 700 !important;
+}
+
+.event-card p {
+    color: #334155 !important;
+    font-size: 13.5px !important;
+    line-height: 1.6;
+}
+
+.event-card div[style*="border-left: 3px solid"] {
+    background: rgba(249, 247, 241, 0.95) !important;
+    border-left-color: #b8770a !important;
+}
+
+.event-card div[style*="border-left: 3px solid"] i {
+    color: #b8770a !important;
+}
+
+.event-card div[style*="border-left: 3px solid"] span {
+    color: #334155 !important;
+    font-weight: 600 !important;
+}
+
+.event-card div[style*="border-left: 3px solid"] strong {
+    color: var(--primary) !important;
+    font-weight: 700 !important;
 }
 
 /* --- Event Card Meta & Schedule Badges --- */
@@ -593,52 +682,52 @@ section {
 }
 
 .event-venue-tag i {
-    color: var(--secondary);
+    color: #b8770a;
     font-size: 13px;
 }
 
 .event-date-badge {
-    font-size: 11px;
-    background: rgba(198, 161, 91, 0.12);
+    font-size: 11.5px;
+    background: rgba(13, 35, 62, 0.08);
     color: var(--primary);
-    padding: 3px 8px;
+    padding: 3px 9px;
     border-radius: 6px;
-    font-weight: 600;
-    border: 1px solid rgba(198, 161, 91, 0.25);
+    font-weight: 700;
+    border: 1px solid rgba(13, 35, 62, 0.2);
     display: inline-flex;
     align-items: center;
     gap: 5px;
 }
 
 .event-time-tag {
-    font-size: 11.5px;
-    color: var(--text-muted);
-    font-weight: 500;
+    font-size: 12px;
+    color: #334155;
+    font-weight: 600;
     display: inline-flex;
     align-items: center;
     gap: 6px;
 }
 
 .event-time-tag i {
-    color: var(--secondary);
+    color: #b8770a;
 }
 
 .timeline-venue-badge {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: rgba(23, 58, 106, 0.06);
+    background: rgba(13, 35, 62, 0.07);
     color: var(--primary);
     padding: 3px 10px;
     border-radius: 12px;
-    font-size: 11px;
-    font-weight: 600;
+    font-size: 11.5px;
+    font-weight: 700;
     margin-bottom: 8px;
-    border: 1px solid rgba(198, 161, 91, 0.25);
+    border: 1px solid rgba(13, 35, 62, 0.18);
 }
 
 .timeline-venue-badge i {
-    color: var(--secondary);
+    color: #b8770a;
 }
 
 /* --- Timeline / Schedule --- */
@@ -653,16 +742,17 @@ section {
     padding: 2.5rem 2rem;
     border-radius: 20px;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(198, 161, 91, 0.25);
     position: relative;
 }
 
 .timeline-dot {
     width: 60px;
     height: 60px;
-    background: rgba(198, 161, 91, 0.12);
-    color: var(--secondary);
-    border: 1px solid rgba(198, 161, 91, 0.2);
+    background: rgba(198, 161, 91, 0.16);
+    color: var(--gold-text);
+    border: 1.5px solid rgba(198, 161, 91, 0.35);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -672,22 +762,25 @@ section {
 }
 
 .timeline-content h4 {
-    color: var(--secondary);
-    font-size: 0.85rem;
+    color: var(--gold-text);
+    font-size: 0.88rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.2px;
     margin-bottom: 0.5rem;
 }
 
 .timeline-content h3 {
     color: var(--primary);
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
 }
 
 .timeline-content p {
-    color: var(--text-muted);
+    color: #334155;
     font-size: 0.95rem;
+    line-height: 1.6;
 }
 
 /* --- Gallery --- */
@@ -726,15 +819,16 @@ section {
     padding: 2.5rem;
     border-radius: 20px;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(198, 161, 91, 0.25);
 }
 
 .contact-icon {
     width: 60px;
     height: 60px;
-    background: rgba(198, 161, 91, 0.12);
-    color: var(--secondary);
-    border: 1px solid rgba(198, 161, 91, 0.2);
+    background: rgba(198, 161, 91, 0.16);
+    color: var(--gold-text);
+    border: 1.5px solid rgba(198, 161, 91, 0.35);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -745,13 +839,15 @@ section {
 
 .contact-card h4 {
     color: var(--primary);
-    font-size: 1.2rem;
+    font-size: 1.25rem;
+    font-weight: 700;
     margin-bottom: 0.5rem;
 }
 
 .contact-card p {
-    color: var(--text-muted);
-    font-size: 0.95rem;
+    color: #334155;
+    font-size: 0.98rem;
+    font-weight: 500;
 }
 
 /* ==========================================================================
@@ -1535,21 +1631,22 @@ section {
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    font-size: 0.68rem;
+    font-size: 0.72rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 700;
-    color: var(--secondary);
+    color: var(--gold-light-text);
     margin-bottom: 4px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .gallery-card-overlay h4 {
     font-family: var(--font-heading), 'Cinzel', serif;
-    font-size: 1.05rem;
+    font-size: 1.08rem;
     color: #ffffff;
     margin: 0;
-    font-weight: 600;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: 700;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.85);
     line-height: 1.25;
 }
 
@@ -1875,16 +1972,18 @@ footer {
 
 .footer-content h2 {
     font-family: var(--font-heading);
-    color: var(--secondary) !important;
+    color: #ffd56b !important;
     font-size: 2.2rem;
+    font-weight: 700;
     letter-spacing: 2px;
     margin-bottom: 0.5rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
 .footer-content .college-sub {
     font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.85);
-    font-weight: 300;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 400;
     margin-bottom: 2rem;
 }
 
@@ -1903,14 +2002,14 @@ footer {
 }
 
 .footer-divider i {
-    color: var(--secondary);
+    color: #ffd56b;
     font-size: 1.2rem;
 }
 
 .footer-content .copyright {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.6);
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.85);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
     padding-top: 2rem;
     line-height: 1.6;
 }
