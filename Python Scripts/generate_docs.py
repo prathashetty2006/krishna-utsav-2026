@@ -453,12 +453,12 @@ def create_documentation():
         r.font.color.rgb = RGBColor(255, 255, 255)
 
     dir_data = [
-        ("index.html, vercel.json", "Root entry files", "Zero-config root entry point for Vercel, Netlify, and Cloud CDNs to prevent 404s"),
+        ("index.html, favicon.ico, vercel.json", "Root entry files & root favicon", "Zero-config root entry point and default /favicon.ico handler for browsers and CDNs"),
         ("HTML and CSS/", "index.html, index.css", "Semantic structure, layout templates, glassmorphism design tokens"),
-        ("Java Script/", "index.js", "Client interaction, carousels, audio gesture handlers, screensaver logic"),
+        ("Java Script/", "index.js, invitation.js", "Client interaction, carousels, audio gesture handlers, invitation QR generation"),
         ("Data and Config/", "nginx.conf", "Custom Nginx web server configuration, Gzip types & redirect rules"),
-        ("Image and Audio/", "Flute audio, photos", "Devotional background audio (mp3), peacock feather textures & images"),
-        ("Python Scripts/", "generate_docs.py, create_root_entry.py", "Automated Word documentation and root HTML synchronization scripts"),
+        ("Image and Audio/", "Flute audio, photos, favicons", "Devotional audio, peacock feather textures, multi-resolution PNG/ICO icons"),
+        ("Python Scripts/", "generate_docs.py, generate_favicon.py, create_root_entry.py", "Automated Word documentation, favicon generation, and root HTML synchronization"),
         ("Docs and Notes/", ".docx documentation", "Formal project documentation files created for college submission"),
         ("Root Configs", "Dockerfile, compose, AGENTS.md", "Docker build container, Compose service & Workspace doc sync rules")
     ]
@@ -907,6 +907,23 @@ def create_documentation():
     for spec in mobile_specs:
         doc.add_paragraph(spec, style='List Bullet')
 
+    # Section 7.7 Favicon Architecture & Zero-404 Resolution
+    add_heading_2("7.7 Favicon Architecture & Zero-404 Browser Resolution")
+    doc.add_paragraph(
+        "Modern web browsers automatically dispatch background HTTP GET requests for '/favicon.ico' whenever an application page is accessed. "
+        "To guarantee zero 404 errors and provide a crisp brand identity across browser tabs, bookmarks, and mobile home screens, "
+        "a multi-resolution favicon asset pipeline was deployed:"
+    )
+    favicon_specs = [
+        "Root Directory 'favicon.ico': Placed at the web server root containing packed multi-resolution icon sizes (16x16, 32x32, 48x48, 64x64, 128x128, 256x256) extracted and bounded from the divine peacock feather artwork.",
+        "Zero-404 Resolution: Satisfies unprompted browser root lookups ('/favicon.ico') with HTTP 200 OK across local development servers, Nginx Docker containers, and cloud hosts like Vercel.",
+        "High-DPI PNG Favicons: Stored in 'Image and Audio/' ('favicon-16x16.png', 'favicon-32x32.png', 'apple-touch-icon.png') for retina displays, iOS bookmark shortcuts, and modern Chromium/WebKit rendering engines.",
+        "Comprehensive HTML Linking: Integrated explicit '<link rel=\"icon\">' and '<link rel=\"apple-touch-icon\">' tags across all root and sub-directory pages ('index.html', 'invitation.html', 'HTML and CSS/index.html', 'HTML and CSS/invitation.html').",
+        "Automated Generation Pipeline: Added 'Python Scripts/generate_favicon.py' leveraging Pillow for repeatable, lossless icon generation with automatic aspect ratio padding and boundary centering."
+    ]
+    for spec in favicon_specs:
+        doc.add_paragraph(spec, style='List Bullet')
+
     # ==========================================
     # SECTION 8: AUTOMATED DOCUMENTATION MAINTENACE
     # ==========================================
@@ -948,6 +965,22 @@ def create_documentation():
         "Through responsive CSS glassmorphism, gesture-compliant Web Audio integration, physics animations, automated documentation synchronization, "
         "and production-ready Docker containerization, the portal offers a robust, scalable, and visually enchanting event management platform suitable for academic presentation and real-world deployment."
     )
+
+    # ==========================================
+    # SECTION 10: APPENDICES & REFERENCES
+    # ==========================================
+    add_heading_1("10. Appendices & References")
+    doc.add_paragraph(
+        "Key project artifacts, configuration files, and references supporting the implementation:"
+    )
+    appendix_items = [
+        "Official Web Standards: W3C HTML5 & CSS3 Recommendations for semantic markup and glassmorphic styling.",
+        "Web Audio API Specification: W3C AudioContext user gesture audio playback lifecycle management.",
+        "Docker Nginx Best Practices: Alpine Linux lightweight base image containerization with gzip performance tuning.",
+        "Favicon Standards: Multi-resolution .ICO specifications and WebKit/Chromium Touch Icon guidelines."
+    ]
+    for app in appendix_items:
+        doc.add_paragraph(app, style='List Bullet')
 
     # Save output file in Docs and Notes/
     output_dir = os.path.join(os.getcwd(), "Docs and Notes")

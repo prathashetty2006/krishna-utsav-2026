@@ -12,6 +12,8 @@ def generate_root_index():
     updated = content.replace('href="index.css"', 'href="HTML and CSS/index.css"')
     updated = updated.replace('src="../Java Script/index.js"', 'src="Java Script/index.js"')
     updated = updated.replace('src="../Image and Audio/', 'src="Image and Audio/')
+    updated = updated.replace('href="../favicon.ico"', 'href="favicon.ico"')
+    updated = updated.replace('href="../Image and Audio/', 'href="Image and Audio/')
 
     with open(target_html, "w", encoding="utf-8") as f:
         f.write(updated)
