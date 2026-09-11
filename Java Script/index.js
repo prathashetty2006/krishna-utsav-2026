@@ -259,13 +259,12 @@ function initBouncingFeathers() {
 
     if (!feather1 && !feather2) return;
 
-    function setupBounce(element, speedX, speedY, startX, startY) {
+    function setupBounce(element, speedX, speedY, startX, startY, rotSpeed = 0.08) {
         let posX = startX;
         let posY = startY;
         let dx = speedX;
         let dy = speedY;
         let rot = 0;
-        const rotSpeed = 0.08; // slow rotation
 
         function step() {
             const width = window.innerWidth;
@@ -276,22 +275,21 @@ function initBouncingFeathers() {
             posY += dy;
             rot += rotSpeed;
 
-            // Bounce off horizontal walls
-            if (posX <= 0) {
+            // Responsive boundary clamp if viewport resized
+            if (rect.width > 0 && posX + rect.width >= width) {
+                posX = Math.max(0, width - rect.width);
+                dx = -Math.abs(dx);
+            } else if (posX <= 0) {
                 posX = 0;
-                dx = -dx;
-            } else if (posX + rect.width >= width) {
-                posX = width - rect.width;
-                dx = -dx;
+                dx = Math.abs(dx);
             }
 
-            // Bounce off vertical walls
-            if (posY <= 0) {
+            if (rect.height > 0 && posY + rect.height >= height) {
+                posY = Math.max(0, height - rect.height);
+                dy = -Math.abs(dy);
+            } else if (posY <= 0) {
                 posY = 0;
-                dy = -dy;
-            } else if (posY + rect.height >= height) {
-                posY = height - rect.height;
-                dy = -dy;
+                dy = Math.abs(dy);
             }
 
             element.style.left = `${posX}px`;
@@ -305,10 +303,10 @@ function initBouncingFeathers() {
     }
 
     if (feather1) {
-        setupBounce(feather1, 0.5, 0.4, 50, 100);
+        setupBounce(feather1, 0.5, 0.4, 50, 100, 0.08);
     }
     if (feather2) {
-        setupBounce(feather2, -0.4, 0.5, window.innerWidth - 250, window.innerHeight - 250);
+        setupBounce(feather2, -0.4, 0.5, Math.max(10, window.innerWidth - 260), Math.max(10, window.innerHeight - 260), -0.06);
     }
 }
 

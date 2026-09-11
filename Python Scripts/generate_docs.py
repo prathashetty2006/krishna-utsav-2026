@@ -877,6 +877,20 @@ def create_documentation():
 
     doc.add_paragraph().paragraph_format.space_after = Pt(6)
 
+    add_heading_2("7.5 Ethereal Vrindavan Wallpaper & Dynamic Feather Aesthetics")
+    doc.add_paragraph(
+        "To elevate the spiritual ambiance of the web application, a full-page background wallpaper system was integrated along with enhanced "
+        "iridescent peacock feather dynamics:"
+    )
+    bg_specs = [
+        "Full-Page Cover Wallpaper: Uses the sacred Little Krishna and Gau-Mata in Vrindavan artwork ('vrindavan-bg.jpeg') with fixed viewport positioning (100vw x 100vh), object-fit cover, and non-blocking pointer events.",
+        "Subtle Watermark Merging: Configured with low opacity (0.12) and 'mix-blend-mode: multiply' to delicately weave the serene Vrindavan tapestry into the sacred ivory/cream theme (#F9F7F1) without compromising readability or foreground contrast.",
+        "Enhanced Peacock Feather Color Ratio: Upgraded the bouncing peacock feather elements to transparent PNGs with heightened color saturation (saturate 1.35, contrast 1.1) and boosted visibility opacity (0.42 - 0.50) with soft drop-shadows.",
+        "Physics-Based Floating Kinetics: Retains collision-detecting boundary bouncing across viewport edges with responsive position clamping during window resize events."
+    ]
+    for spec in bg_specs:
+        doc.add_paragraph(spec, style='List Bullet')
+
     # ==========================================
     # SECTION 8: AUTOMATED DOCUMENTATION MAINTENACE
     # ==========================================
